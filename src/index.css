@@ -48,12 +48,18 @@ code {
 .header-title {
   /* border: 2px solid pink; */
   width: 600px;
-  color: gray;
+  
 }
 
 .header-log-in{
   /* border: 2px solid blue; */
+ 
+}
+
+.link {
   color: gray;
+  text-decoration: none;
+
 }
 
 
