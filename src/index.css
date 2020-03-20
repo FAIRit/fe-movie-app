@@ -48,12 +48,22 @@ code {
 .header-title {
   /* border: 2px solid pink; */
   width: 600px;
-  color: gray;
+  
 }
 
 .header-log-in{
   /* border: 2px solid blue; */
+ 
+}
+
+.header-logo-img {
+  height: 75px;
+}
+
+.link {
   color: gray;
+  text-decoration: none;
+
 }
 
 
@@ -141,3 +151,4 @@ input{
   color: gray;
 
 }
+
