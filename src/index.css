@@ -56,6 +56,10 @@ code {
  
 }
 
+.header-logo-img {
+  height: 75px;
+}
+
 .link {
   color: gray;
   text-decoration: none;
