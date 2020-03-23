@@ -1,12 +1,9 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import Poster from './images/poster.jpg';
 import Actors from './Actors';
 import MovieCardNavigation from './MovieCardNavigation';
 
 function MovieCard() {
-  let { movieId } = useParams();
-
   return (
     <div className='movie-card'>
       <MovieCardNavigation />
@@ -31,8 +28,6 @@ function MovieCard() {
             <div>Add to favourites</div>
           </div>
         </div>
-        {/* <h2>Movie Title</h2>
-        Movie: {movieId} */}
       </div>
       <Actors />
     </div>
