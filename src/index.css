@@ -93,7 +93,7 @@ input{
 
 .movie-board {
   background: #242323;
-  height: 1000px;
+  
 }
 
 .movie-board-container {
@@ -109,11 +109,10 @@ input{
 
 .movie-tile{
   margin: 10px;
-  height: 300px;
-  width: 200px;
+  width: 250px;
   background: rgba(211, 211, 211, 0.082);
   border: 4px solid gray;
-
+  border-radius: 15px;
 }
 
 
@@ -223,6 +222,15 @@ input{
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+}
+
+.actor-tile{
+  margin: 10px;
+  width: 200px;
+  height: 300px;
+  background: rgba(211, 211, 211, 0.082);
+  border: 4px solid gray;
+  border-radius: 15px;
 }
 
 
