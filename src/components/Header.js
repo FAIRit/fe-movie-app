@@ -17,7 +17,7 @@ function Header() {
           </Link>
         </div>
         <div className='header-log-in'>
-          <Link className='link' to='/LogIn'>
+          <Link className='link' to='/Login'>
             <p>Log in</p>
           </Link>
         </div>
