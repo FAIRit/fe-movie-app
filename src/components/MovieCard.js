@@ -12,7 +12,7 @@ function MovieCard() {
       return el;
     } else {
       return null;
-    } // bez "return null" wyskakiwał mi komunikat: expected to return a value at the end of arrow function  array-callback-return
+    } // bez "return null" wyskakiwał mi error: expected to return a value at the end of arrow function  array-callback-return
   });
 
   let {
@@ -24,22 +24,18 @@ function MovieCard() {
   } = selectedMovie[0];
 
   let getGenre = genre.filter((el) => {
-    console.log(el.id);
     if (genre_ids[0] === el.id) {
-      console.log(el.name);
       return el.name;
     } else {
       return null;
     }
   });
-  console.log(getGenre);
-
+ 
   let { name: genre_name } = getGenre[0];
 
   return (
     <div className='movie-card'>
       <MovieCardNavigation />
-
       <div className='movie-card-container'>
         <div className='movie-card-image'>
           <img
