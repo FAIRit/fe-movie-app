@@ -8,16 +8,16 @@ function Actors() {
       </div>
 
       <div className='actors-container'>
-        <div className='movie-tile'>Actor</div>
-        <div className='movie-tile'>Actor</div>
-        <div className='movie-tile'>Actor</div>
-        <div className='movie-tile'>Actor</div>
-        <div className='movie-tile'>Actor</div>
-        <div className='movie-tile'>Actor</div>
-        <div className='movie-tile'>Actor</div>
-        <div className='movie-tile'>Actor</div>
-        <div className='movie-tile'>Actor</div>
-        <div className='movie-tile'>Actor</div>
+        <div className='actor-tile'>Actor</div>
+        <div className='actor-tile'>Actor</div>
+        <div className='actor-tile'>Actor</div>
+        <div className='actor-tile'>Actor</div>
+        <div className='actor-tile'>Actor</div>
+        <div className='actor-tile'>Actor</div>
+        <div className='actor-tile'>Actor</div>
+        <div className='actor-tile'>Actor</div>
+        <div className='actor-tile'>Actor</div>
+        <div className='actor-tile'>Actor</div>
       </div>
     </div>
   );

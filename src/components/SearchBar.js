@@ -5,7 +5,7 @@ function SearchBar() {
     <div className='searchbar'>
       <div className='searchbar-container'>
         <input type='text' placeholder='Search movie...'></input>
-        <button class='search-button'>Search</button>
+        <button className='search-button'>Search</button>
       </div>
     </div>
   );
