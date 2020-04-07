@@ -9,6 +9,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='/login' component={Login} />
           <Redirect from='/' to='/movies' />
         </Switch>
+        <Footer />
       </div>
     </Router>
   );

@@ -7,7 +7,7 @@ function MovieTile() {
     <div className='movie-board'>
       <div className='movie-board-container'>
         {movie.map((movie) => (
-          <Link to={`/movies/movie${movie.id}`}>
+          <Link to={`/movies/${movie.id}`}>
             <img
               className='movie-tile'
               src={`${image_base_url}${poster_size}${movie.poster_path}`}
@@ -21,4 +21,3 @@ function MovieTile() {
 }
 
 export default MovieTile;
-
