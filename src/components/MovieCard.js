@@ -1,37 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Actors from './Actors';
 import MovieCardNavigation from './MovieCardNavigation';
-import { movie, image_base_url, poster_size, genre } from './data/MovieList.js';
+
 import { useParams } from 'react-router-dom';
+import { API_KEY, API_URL, POSTER_SIZE, IMAGE_URL } from './data/Data';
 
-function MovieCard() {
+function MovieCard(props) {
   let { movieId } = useParams();
+  // const movieId=props.match.params.movieId
+  const [movie, setMovie] = useState([]);
 
-  let selectedMovie = movie.filter((el) => {
-    if (parseInt(movieId) === el.id) {
-      return el;
-    } else {
-      return null;
-    } // bez "return null" wyskakiwał mi error: expected to return a value at the end of arrow function  array-callback-return
-  });
-
-  let {
-    title,
-    overview,
-    poster_path,
-    vote_average,
-    genre_ids,
-  } = selectedMovie[0];
-
-  let getGenre = genre.filter((el) => {
-    if (genre_ids[0] === el.id) {
-      return el.name;
-    } else {
-      return null;
-    }
-  });
- 
-  let { name: genre_name } = getGenre[0];
+  useEffect(() => {
+    fetch(`${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`)
+      .then((response) => response.json())
+      .then((response) => {
+        setMovie(response); ///////////
+        console.log('ewn', response.genres[0].name); ///
+      });
+  }, []);
 
   return (
     <div className='movie-card'>
@@ -40,16 +26,19 @@ function MovieCard() {
         <div className='movie-card-image'>
           <img
             className='poster'
-            src={`${image_base_url}${poster_size}${poster_path}`}
+            src={
+              movie.poster_path &&
+              `${IMAGE_URL}${POSTER_SIZE}${movie.poster_path}`
+            }
             alt='Poster'
           />
         </div>
         <div className='movie-card-info'>
-          <h2 className='movie-card-title'>{title}</h2>
-          <div className='movie-card-description'>{overview}</div>
+          <h2 className='movie-card-title'>{movie.title}</h2>
+          <div className='movie-card-description'>{movie.overview}</div>
           <div className='movie-card-detail-info'>
-            <div>Genre: {genre_name}</div>
-            <div>Rating {vote_average}/10</div>
+            <div>Genre: {movie.genres && movie.genres[0].name}</div>
+            <div>Rating {movie.vote_average}/10</div>
             <div>Add to favourites</div>
           </div>
         </div>
