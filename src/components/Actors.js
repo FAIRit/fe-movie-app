@@ -1,18 +1,15 @@
-import React from 'react';
-import actors from './data/ActorList.js';
-import { image_base_url, poster_size } from './data/MovieList.js';
+import React, { useState, useEffect } from 'react';
+import { POSTER_SIZE, IMAGE_URL, fetchActors } from './data/Data';
 import { useParams } from 'react-router-dom';
+import default_image from './images/default_image.png';
 
 function Actors() {
   let { movieId } = useParams();
+  const [actors, setActors] = useState([]);
 
-  let selectActors = actors.filter((el) => {
-    if (parseInt(movieId) === el.id) {
-      return el;
-    } else {
-      return null;
-    }
-  });
+  useEffect(() => {
+    fetchActors(movieId).then((response) => setActors(response.cast));
+  }, []);
 
   return (
     <div className='actors'>
@@ -20,17 +17,24 @@ function Actors() {
         <h2 className='actors-header-text'>Actors</h2>
       </div>
       <div className='actors-container'>
-        {selectActors[0].cast.map((el) => (
-          <div key={el.credit_id} className='actor-tile'>
-            <img
-              className='actor-image'
-              src={`${image_base_url}${poster_size}${el.profile_path}`}
-              alt='No Image'
-            ></img>
-            <span className='actor-name'>{el.name}</span>
-            <span className='actor-character'>{el.character}</span>
-          </div>
-        ))}
+        {actors &&
+          actors.map((actor) => {
+            return (
+              <div key={actor.credit_id} className='actor-tile'>
+                <img
+                  className='actor-image'
+                  src={
+                    actor.profile_path
+                      ? `${IMAGE_URL}${POSTER_SIZE}${actor.profile_path}`
+                      : default_image
+                  }
+                  alt='Actor'
+                ></img>
+                <span className='actor-name'>{actor.name}</span>
+                <span className='actor-character'>{actor.character}</span>
+              </div>
+            );
+          })}
       </div>
     </div>
   );
