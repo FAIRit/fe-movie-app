@@ -1,27 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { API_KEY, API_URL, POSTER_SIZE, IMAGE_URL } from './data/Data';
+import {
+  POSTER_SIZE,
+  IMAGE_URL,
+  fetchMovies,
+  fetchPopularMovies,
+} from './data/Data';
 import MovieTile from './MovieTile';
 import SearchBar from './SearchBar';
 
 function HomePage() {
   const [movies, setMovies] = useState([]);
+  const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    getFetchMovies();
-  }, []); // tablica aby fetch nie wykonywał się przy każdym renderze, a tylko za pierwszym razem
+    if (filter) {
+      fetchMovies(filter).then((response) => setMovies(response.results));
+    } else {
+      fetchPopularMovies().then((response) => setMovies(response.results));
+    }
+  }, [filter]);
 
-  function getFetchMovies() {
-    fetch(`${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`) //popular movies
-      .then((response) => response.json())
-      .then((response) => {
-        console.log(response.results); ///////////
-        setMovies(response.results);
-      });
+  function handleFilterChange(value) {
+    setFilter(value);
   }
 
   return (
     <div>
-      <SearchBar />
+      <SearchBar onChange={handleFilterChange} />
       <div className='movie-board'>
         <div className='movie-board-container'>
           {movies.map((movie) => {
@@ -38,7 +43,6 @@ function HomePage() {
           })}
         </div>
       </div>
-      <button>Next</button>
     </div>
   );
 }

@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { API_KEY, API_URL, POSTER_SIZE, IMAGE_URL } from './data/Data';
-
+import { POSTER_SIZE, IMAGE_URL, fetchActors } from './data/Data';
 import { useParams } from 'react-router-dom';
+import default_image from './images/default_image.png';
 
 function Actors() {
   let { movieId } = useParams();
   const [actors, setActors] = useState([]);
 
   useEffect(() => {
-    fetch(`${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`)
-      .then((response) => response.json())
-      .then((response) => {
-        setActors(response.cast); ///////////
-      });
+    fetchActors(movieId).then((response) => setActors(response.cast));
   }, []);
 
   return (
@@ -21,17 +17,24 @@ function Actors() {
         <h2 className='actors-header-text'>Actors</h2>
       </div>
       <div className='actors-container'>
-        {actors.map((actor) => (
-          <div key={actor.credit_id} className='actor-tile'>
-            <img
-              className='actor-image'
-              src={`${IMAGE_URL}${POSTER_SIZE}${actor.profile_path}`}
-              alt='No Image'
-            ></img>
-            <span className='actor-name'>{actor.name}</span>
-            <span className='actor-character'>{actor.character}</span>
-          </div>
-        ))}
+        {actors &&
+          actors.map((actor) => {
+            return (
+              <div key={actor.credit_id} className='actor-tile'>
+                <img
+                  className='actor-image'
+                  src={
+                    actor.profile_path
+                      ? `${IMAGE_URL}${POSTER_SIZE}${actor.profile_path}`
+                      : default_image
+                  }
+                  alt='Actor'
+                ></img>
+                <span className='actor-name'>{actor.name}</span>
+                <span className='actor-character'>{actor.character}</span>
+              </div>
+            );
+          })}
       </div>
     </div>
   );

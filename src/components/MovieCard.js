@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Actors from './Actors';
 import MovieCardNavigation from './MovieCardNavigation';
-
 import { useParams } from 'react-router-dom';
-import { API_KEY, API_URL, POSTER_SIZE, IMAGE_URL } from './data/Data';
+import { POSTER_SIZE, IMAGE_URL, fetchSelectedMovie } from './data/Data';
 
-function MovieCard(props) {
+function MovieCard() {
   let { movieId } = useParams();
-  // const movieId=props.match.params.movieId
   const [movie, setMovie] = useState([]);
 
   useEffect(() => {
-    fetch(`${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`)
-      .then((response) => response.json())
-      .then((response) => {
-        setMovie(response); ///////////
-        console.log('ewn', response.genres[0].name); ///
-      });
+    fetchSelectedMovie(movieId).then((response) => setMovie(response));
   }, []);
 
   return (
